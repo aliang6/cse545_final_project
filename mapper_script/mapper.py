@@ -70,28 +70,30 @@ def mlinreg(data):
     # the number of dependent variables
     n = myarray[0].size - 1
 
+    # dependent variables
     # pick first n columns into deps and transpose it
     # deps' dimension is n*m (m is the number of data points in each record)
     deps = myarray[:, 0:n].transpose()
 
+    # independent variable
     # pick the last column into indeps and transpose it
     # indeps' dimension is 1*m
     indeps = myarray[:, n].transpose()
 
     # mean and std dev of deps and indeps
-    mean_deps = np.mean(deps, axis = 0)
-    mean_indeps = np.mean(indeps, axis = 0)
-    sd_deps = np.std(deps, axis = 0)
-    sd_indeps = np.std(indeps, axis = 0)
+    mean_deps = np.mean(deps, axis = 1)
+    mean_indeps = np.mean(indeps, axis = 1)
+    sd_deps = np.std(deps, axis = 1)
+    sd_indeps = np.std(indeps, axis = 1)
 
     # standardize deps and indeps
     temp_list = []
-    for i in range(n):
+    for i in range(deps.size):
         temp_list.append([(elem - mean_deps[i])/sd_deps[i] for elem in deps[i]])
     std_deps = np.array(temp_list)
 
     temp_list = []
-    for i in range(myarray.size):
+    for i in range(indeps.size):
         temp_list.append((indeps[i] - mean_indeps)/sd_indeps)
     std_indeps = np.array(temp_list)
 
@@ -144,10 +146,15 @@ def mlinreg(data):
     for i in range(n):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
-    # obtain the indices of 10 smallest p values in p
-    ind = np.argpartition(p, 10)
-    print("\nThe 10 most significant covariates are: ")
-    print(ind[:10])
+    # obtain the index of the smallest p value in p
+    ind = np.argpartition(p, 1)
+
+    if p < 0.05/1032:
+        return ind[:1]
+    else:
+        return ['no significant crop']
+
+
 
 
 
