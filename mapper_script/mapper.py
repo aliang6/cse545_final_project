@@ -32,6 +32,17 @@ outfile.close()
 conf = SparkConf()
 sc = SparkContext(conf=conf)
 
+CROPS = ['apple', 'oilseednes', 'cerealnes', 'hemp', 'blueberry', 'peachetc', 'spicenes', 'pistachio', 'chilleetc', 'beetfor', 'citrusnes', 'pear', 'strawberry', 'linseed', 
+    'sweetpotato', 'avocado', 'tropicalnes', 'sugarcane', 'jutelikefiber', 'brazil', 'kapokfiber', 'lemonlime', 'spinach', 'sisal', 'carob', 'abaca', 'soybean', 'lettuce', 
+    'fig', 'tobacco', 'clover', 'hop', 'kiwi', 'mixedgrain', 'yam', 'mushroom', 'safflower', 'turnipfor', 'nutnes', 'okra', 'rice', 'cashewapple', 'tung', 'fruitnes', 'onion', 
+    'pulsenes', 'cauliflower', 'groundnut', 'potato', 'quince', 'sugarbeet', 'bean', 'ryefor', 'castor', 'plantain', 'date', 'cotton', 'pimento', 'quinoa', 'alfalfa', 'rubber', 
+    'aniseetc', 'fonio', 'kapokseed', 'nutmeg', 'chestnut', 'plum', 'cucumberetc', 'cherry', 'greencorn', 'hazelnut', 'tangetc', 'mustard', 'watermelon', 'sourcherry', 'stonefruitnes', 
+    'rapeseed', 'rootnes', 'currant', 'chicory', 'tea', 'fornes', 'greenbean', 'wheat', 'oilseedfor', 'mango', 'flax', 'cocoa', 'millet', 'poppy', 'pea', 'cabbagefor', 'cabbage', 'coconut', 
+    'oilpalm', 'stringbean', 'vetch', 'sorghum', 'almond', 'legumenes', 'oats', 'cinnamon', 'apricot', 'rasberry', 'cranberry', 'coffee', 'areca', 'eggplant', 'clove', 'karite', 'greenbroadbean', 
+    'cassava', 'gooseberry', 'cowpea', 'triticale', 'jute', 'pyrethrum', 'lentil', 'lupin', 'chickpea', 'artichoke', 'pigeonpea', 'asparagus', 'banana', 'olive', 'sugarnes', 'canaryseed', 
+    'ginger', 'sesame', 'grape', 'rye', 'swedefor', 'taro', 'fibrenes', 'papaya', 'vanilla', 'carrotfor', 'agave', 'garlic', 'greenonion', 'pepper', 'vegfor', 'melonetc', 'hempseed', 'walnut', 
+    'broadbean', 'grassnes', 'grapefruitetc', 'ramie', 'pineapple', 'pumpkinetc', 'melonseed', 'greenpea', 'tomato', 'kolanut', 'yautia', 'cashew', 'persimmon', 'sorghumfor', 'peppermint', 'mate', 
+    'orange', 'vegetablenes', 'carrot', 'barley', 'mixedgrass', 'sunflower', 'bambara', 'berrynes', 'maizefor', 'buckwheat', 'maize']
 
 # In[4]:
 
@@ -52,7 +63,7 @@ def map_1(data):
 # In[7]:
 
 
-rdd = sc.textFile('final_data.json').map(map_1).groupByKey()  # mapValues(list).collect()
+rdd = sc.textFile('formatted_full_data_2.json').map(map_1).groupByKey()  # mapValues(list).collect()
 
 
 # In[8]:
@@ -145,10 +156,14 @@ def mlinreg(data):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
     # obtain the index of the smallest p value in p
-    if min(p) < 0.05/(n-1):
-        return p.index(min(p))
+    p = np.array(p)
+    min_p = np.min(np.ma.masked_where(p==0, p))
+    if min_p < 0.05/(n-1):
+        index = np.where(p == min_p)[0][0]
+        return (CROPS[index], min_p)
+        #return index
     else:
-        return [str(df) + 'no significant crop']
+        return ('no significant crop or not enough data', 0)
 
 
 def list_to_csv_str(row):
@@ -160,3 +175,11 @@ def list_to_csv_str(row):
 rdd = rdd.mapValues(mlinreg)
 # rdd = rdd.map(list_to_csv_str)
 # rdd.saveAsTextFile('output.csv')  # could be your local directory
+data = rdd.collect()
+with open('sample_results.csv', 'w+') as file:
+    writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for row in data:
+        country = row[0]
+        sig_crop = row[1][0]
+        p_val = row[1][1]
+        writer.writerow([country, sig_crop, p_val])
