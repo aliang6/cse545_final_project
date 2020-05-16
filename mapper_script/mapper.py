@@ -80,7 +80,7 @@ def mlinreg(data):
     # dependent variables
     # pick first n columns into deps and transpose it
     # deps' dimension is n*m (m is the number of data points in each record)
-    deps = myarray[:, 0:n].transpose()
+    deps = np.hstack((np.ones(myarray.size, 1), myarray[:, 0:n])).transpose()
 
     # independent variable
     # pick the last column into indeps and transpose it
@@ -104,8 +104,8 @@ def mlinreg(data):
         temp_list.append((indeps[i] - mean_indeps)/sd_indeps)
     std_indeps = np.array(temp_list)
 
-    X = tf.constant(np.hstack((np.ones(n, None), np.random.randn(n, None))))
-    Y = tf.constant(np.random.randn(1, None))
+    X = tf.constant(deps)
+    Y = tf.constant(indeps)
 
     # initialize beta(first element is bias)
     beta = tf.Variable(np.random.randn(1, n+1))
