@@ -1,4 +1,4 @@
-Country,Crop,Correlation
+Country,Crop,p-value
 Algeria,pea,1.33E-39
 Chad,oats,1.57E-204
 Niger,barley,1.40E-138
