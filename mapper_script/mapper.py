@@ -158,5 +158,5 @@ def list_to_csv_str(row):
 
 
 rdd = rdd.mapValues(mlinreg)
-rdd = rdd.map(list_to_csv_str)
-rdd.saveAsTextFile('output.csv')  # could be your local directory
+# rdd = rdd.map(list_to_csv_str)
+# rdd.saveAsTextFile('output.csv')  # could be your local directory
