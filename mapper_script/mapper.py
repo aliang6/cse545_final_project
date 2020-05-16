@@ -126,8 +126,12 @@ def mlinreg(data):
     t_stat = []
     p = []
     for i in range(1, np.size(indeps1, 0)):
-        if np.sum(indeps1[i]) != 0:
-            se.append(np.sqrt(sSquared/np.sum([((elem - mean_indeps1[i]) ** 2) for elem in indeps1[i]])))
+        npsum = np.sum([((elem - mean_indeps1[i]) ** 2) for elem in indeps1[i]])
+
+        if np.sum(indeps1[i]) != 0 and npsum != 0:
+            se.append(np.sqrt(sSquared/npsum))
+        elif np.sum(indeps1[i]) != 0 and npsum == 0:
+            se.append(np.sqrt(sSquared/np.finfo(float).eps))
         else:
             se.append(np.finfo(float).eps)
 
