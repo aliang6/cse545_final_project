@@ -2,18 +2,16 @@
 # coding: utf-8
 
 # In[1]:
-
-
+import functools
+from functools import partial
 from pyspark import SparkContext, SparkConf
 import numpy as np
 from scipy import stats
 import sys
 import json
 import re
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 
-
-tf.disable_v2_behavior()
 
 # In[2]:
 
@@ -62,6 +60,14 @@ rdd = sc.textFile('final_data.json').map(map_1).groupByKey()  # mapValues(list).
 rdd.take(2)
 
 
+def f_batch_tensorflow(beta, A, B):
+    # calculate predicted value
+    e = tf.matmul(beta, A) - B
+
+    # return loss
+    return tf.reduce_sum(tf.square(e))
+
+
 # implement multiple linear regression
 def mlinreg(data):
     # convert list of np arrays into a single array
@@ -69,7 +75,7 @@ def mlinreg(data):
     print('size of input matrix: ' + str(myarray.size))
 
     # the number of dependent variables
-    n = myarray[0].size - 1
+    n = 1032
 
     # dependent variables
     # pick first n columns into deps and transpose it
@@ -89,7 +95,7 @@ def mlinreg(data):
 
     # standardize deps and indeps
     temp_list = []
-    for i in range(1032):
+    for i in range(n):
         temp_list.append([(elem - mean_deps[i])/sd_deps[i] for elem in deps[i]])
     std_deps = np.array(temp_list)
 
@@ -98,37 +104,20 @@ def mlinreg(data):
         temp_list.append((indeps[i] - mean_indeps)/sd_indeps)
     std_indeps = np.array(temp_list)
 
-    X = tf.placeholder(tf.float32, shape=(1032, None))
-    Y = tf.placeholder(tf.float32, shape=(1, None))
+    X = tf.constant(np.hstack((np.ones(n, None), np.random.randn(n, None))))
+    Y = tf.constant(np.random.randn(1, None))
 
-    # initialize beta and bias(b)
-    beta = tf.Variable(tf.zeros([1, 1032]))
-    b = tf.Variable(tf.zeros([1, 1]))
+    # initialize beta(first element is bias)
+    beta = tf.Variable(np.random.randn(1, n+1))
 
-    # calculate predicted value
-    Y_pred = tf.matmul(beta, X) + b
-
-    # loss function
-    loss = tf.reduce_sum((Y_pred - Y)**2)
-
-    # initialize optimizer
-    opt = tf.train.AdamOptimizer(learning_rate=0.1).minimize(loss)
-
-    # Create a tf session
-    session = tf.Session()
-    session.run(tf.global_variables_initializer())
-
-    # optimization loop
-    for i in range(20):
-        _, c_l, c_beta, c_b = session.run([opt, loss, beta, b], feed_dict={
-            X: std_deps,
-            Y: std_indeps
-    })
-    print("loop# = %g, loss = %g, beta = %s, b = %g" % (i, c_l, str(c_beta), c_b))
+    f_without_any_args = functools.partial(f_batch_tensorflow, A=X, B=Y)
+    optimizer = tf.keras.optimizers.Adam()
+    optimizer.minimize(f_without_any_args, beta)
+    print(optimizer)
 
     # T-test
     # degree of freedom
-    df = myarray.size - (1032 + 1)
+    df = myarray.size - (n + 1)
 
     # calculate std error of beta
     rss = np.sum((std_indeps - tf.matmul(beta, std_deps))**2)
@@ -136,24 +125,22 @@ def mlinreg(data):
     se = []
     t_stat = []
     p = []
-    for i in range(1032):
+    for i in range(n):
         se.append(np.sqrt(sSquared/np.sum([((elem - mean_deps[i]) ** 2) for elem in deps[i]])))
 
     # t statistic
-    for i in range(1032):
-        t_stat.append((c_beta[i]/se[i]))
+    for i in range(n):
+        t_stat.append((beta[i]/se[i]))
 
     # p value
-    for i in range(1032):
+    for i in range(n):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
     # obtain the index of the smallest p value in p
-    if min(p) < 0.05/1032:
+    if min(p) < 0.05/n:
         return p.index(min(p))
     else:
         return ['no significant crop']
-
-
 
 
 
