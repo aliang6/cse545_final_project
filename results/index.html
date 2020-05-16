@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0f077a5e245b44de9fcdee330eca01d3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_0f077a5e245b44de9fcdee330eca01d3" ></div>
+        
+</body>
+<script>    
+    
+            var map_0f077a5e245b44de9fcdee330eca01d3 = L.map(
+                "map_0f077a5e245b44de9fcdee330eca01d3",
+                {
+                    center: [8.7832, 34.5085],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 3,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_df6030b5483d4a5c8932fc7033d8b055 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+            var marker_cd0282a794ef49d087602b498e487e3d = L.marker(
+                [28.033886, 1.6596259999999998],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_42e8df9bd9e744c196c566388e5c3dda = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dc10e1b244da4f519e962985ab4abbba = $(`<div id="html_dc10e1b244da4f519e962985ab4abbba" style="width: 100.0%; height: 100.0%;"><i>Algeria</i><br><br>Most highly correlated crop: pea<br><br>p-value: 1.33e-39</div>`)[0];
+            popup_42e8df9bd9e744c196c566388e5c3dda.setContent(html_dc10e1b244da4f519e962985ab4abbba);
+        
+
+        marker_cd0282a794ef49d087602b498e487e3d.bindPopup(popup_42e8df9bd9e744c196c566388e5c3dda)
+        ;
+
+        
+    
+    
+            marker_cd0282a794ef49d087602b498e487e3d.bindTooltip(
+                `<div>
+                     Algeria
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c43b06f36ff844c3a8bdffe0c64d3fa1 = L.marker(
+                [-11.202691999999999, 17.873887],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_74841fe374fc4d78bc866acd4ce98b88 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0c492e4398034ad38fe4e967b6dae8ce = $(`<div id="html_0c492e4398034ad38fe4e967b6dae8ce" style="width: 100.0%; height: 100.0%;"><i>Angola</i><br><br>Most highly correlated crop: tomato<br><br>p-value: 5.749999999999997e-237</div>`)[0];
+            popup_74841fe374fc4d78bc866acd4ce98b88.setContent(html_0c492e4398034ad38fe4e967b6dae8ce);
+        
+
+        marker_c43b06f36ff844c3a8bdffe0c64d3fa1.bindPopup(popup_74841fe374fc4d78bc866acd4ce98b88)
+        ;
+
+        
+    
+    
+            marker_c43b06f36ff844c3a8bdffe0c64d3fa1.bindTooltip(
+                `<div>
+                     Angola
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_65c4affb11c94a70b343c93e7883dece = L.marker(
+                [9.30769, 2.315834],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_812f0454d3b54ad5b3fc0ff73a56500b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e413c9f27ae84aab8e74c23c6216e839 = $(`<div id="html_e413c9f27ae84aab8e74c23c6216e839" style="width: 100.0%; height: 100.0%;"><i>Benin</i><br><br>Most highly correlated crop: alfalfa<br><br>p-value: 1.5199999999999996e-158</div>`)[0];
+            popup_812f0454d3b54ad5b3fc0ff73a56500b.setContent(html_e413c9f27ae84aab8e74c23c6216e839);
+        
+
+        marker_65c4affb11c94a70b343c93e7883dece.bindPopup(popup_812f0454d3b54ad5b3fc0ff73a56500b)
+        ;
+
+        
+    
+    
+            marker_65c4affb11c94a70b343c93e7883dece.bindTooltip(
+                `<div>
+                     Benin
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_557dd4e5a5e24036a37009bc1bfee334 = L.marker(
+                [12.238333, -1.561593],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_98666bb485514734820a6d3cf73d37e6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f38f9965aada4109818bb37929329eda = $(`<div id="html_f38f9965aada4109818bb37929329eda" style="width: 100.0%; height: 100.0%;"><i>Burkina Faso</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 2.56e-55</div>`)[0];
+            popup_98666bb485514734820a6d3cf73d37e6.setContent(html_f38f9965aada4109818bb37929329eda);
+        
+
+        marker_557dd4e5a5e24036a37009bc1bfee334.bindPopup(popup_98666bb485514734820a6d3cf73d37e6)
+        ;
+
+        
+    
+    
+            marker_557dd4e5a5e24036a37009bc1bfee334.bindTooltip(
+                `<div>
+                     Burkina Faso
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_41646c92dd334620bf25804bb6c54b1e = L.marker(
+                [7.369722, 12.354722],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_d7c4cfbfea574d4c8d73330e833bf755 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0b0c05b596bc4adbb7c3ba06cdabd43b = $(`<div id="html_0b0c05b596bc4adbb7c3ba06cdabd43b" style="width: 100.0%; height: 100.0%;"><i>Cameroon</i><br><br>Most highly correlated crop: greenpea<br><br>p-value: 1.389999999999999e-259</div>`)[0];
+            popup_d7c4cfbfea574d4c8d73330e833bf755.setContent(html_0b0c05b596bc4adbb7c3ba06cdabd43b);
+        
+
+        marker_41646c92dd334620bf25804bb6c54b1e.bindPopup(popup_d7c4cfbfea574d4c8d73330e833bf755)
+        ;
+
+        
+    
+    
+            marker_41646c92dd334620bf25804bb6c54b1e.bindTooltip(
+                `<div>
+                     Cameroon
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_21d5907ddb5a464085c70f2fabcf8f5b = L.marker(
+                [16.002082, -24.013197],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_9a510673e90244ed83e889cd6f28bb12 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_205ae1df6365426ab8069431e2f0154c = $(`<div id="html_205ae1df6365426ab8069431e2f0154c" style="width: 100.0%; height: 100.0%;"><i>Cape Verde</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 1.4400000000000001e-19</div>`)[0];
+            popup_9a510673e90244ed83e889cd6f28bb12.setContent(html_205ae1df6365426ab8069431e2f0154c);
+        
+
+        marker_21d5907ddb5a464085c70f2fabcf8f5b.bindPopup(popup_9a510673e90244ed83e889cd6f28bb12)
+        ;
+
+        
+    
+    
+            marker_21d5907ddb5a464085c70f2fabcf8f5b.bindTooltip(
+                `<div>
+                     Cape Verde
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cce1c1a719ef44359631a4d1ff58b801 = L.marker(
+                [6.611111, 20.939444],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_a18c6b966c8c439b913f3ea1a0a22d21 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_41cc57dc2aeb4168a938d1e59cc6fb79 = $(`<div id="html_41cc57dc2aeb4168a938d1e59cc6fb79" style="width: 100.0%; height: 100.0%;"><i>Central African Republic</i><br><br>Most highly correlated crop: pea<br><br>p-value: 5.519999999999999e-147</div>`)[0];
+            popup_a18c6b966c8c439b913f3ea1a0a22d21.setContent(html_41cc57dc2aeb4168a938d1e59cc6fb79);
+        
+
+        marker_cce1c1a719ef44359631a4d1ff58b801.bindPopup(popup_a18c6b966c8c439b913f3ea1a0a22d21)
+        ;
+
+        
+    
+    
+            marker_cce1c1a719ef44359631a4d1ff58b801.bindTooltip(
+                `<div>
+                     Central African Republic
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bff1535083e145558e71952050b64bbd = L.marker(
+                [15.454166, 18.732207],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_b783da4f9dd847108157afd0c4a61b18 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_140c6ff49a7446dd808d5794d1c19219 = $(`<div id="html_140c6ff49a7446dd808d5794d1c19219" style="width: 100.0%; height: 100.0%;"><i>Chad</i><br><br>Most highly correlated crop: oats<br><br>p-value: 1.5699999999999993e-204</div>`)[0];
+            popup_b783da4f9dd847108157afd0c4a61b18.setContent(html_140c6ff49a7446dd808d5794d1c19219);
+        
+
+        marker_bff1535083e145558e71952050b64bbd.bindPopup(popup_b783da4f9dd847108157afd0c4a61b18)
+        ;
+
+        
+    
+    
+            marker_bff1535083e145558e71952050b64bbd.bindTooltip(
+                `<div>
+                     Chad
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2bdfdd54a446433f9efc0208eeb513e3 = L.marker(
+                [-0.228021, 15.827658999999999],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_1e73ad4ac45340f196d9af4bc7c4a9a0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_31cd6718b06944aca5d66202c1000d38 = $(`<div id="html_31cd6718b06944aca5d66202c1000d38" style="width: 100.0%; height: 100.0%;"><i>Congo</i><br><br>Most highly correlated crop: greencorn<br><br>p-value: 3.589999999999999e-147</div>`)[0];
+            popup_1e73ad4ac45340f196d9af4bc7c4a9a0.setContent(html_31cd6718b06944aca5d66202c1000d38);
+        
+
+        marker_2bdfdd54a446433f9efc0208eeb513e3.bindPopup(popup_1e73ad4ac45340f196d9af4bc7c4a9a0)
+        ;
+
+        
+    
+    
+            marker_2bdfdd54a446433f9efc0208eeb513e3.bindTooltip(
+                `<div>
+                     Congo
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e648cd429c7947759d8ccbcc45aafb52 = L.marker(
+                [7.539989, -5.54708],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_fc48f9a8a77d4d85b71af89f773e244b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6c36464e9eca4c1788d612e93379b010 = $(`<div id="html_6c36464e9eca4c1788d612e93379b010" style="width: 100.0%; height: 100.0%;"><i>Cote d'Ivoire</i><br><br>Most highly correlated crop: apple<br><br>p-value: 1.4799999999999993e-302</div>`)[0];
+            popup_fc48f9a8a77d4d85b71af89f773e244b.setContent(html_6c36464e9eca4c1788d612e93379b010);
+        
+
+        marker_e648cd429c7947759d8ccbcc45aafb52.bindPopup(popup_fc48f9a8a77d4d85b71af89f773e244b)
+        ;
+
+        
+    
+    
+            marker_e648cd429c7947759d8ccbcc45aafb52.bindTooltip(
+                `<div>
+                     Cote d'Ivoire
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5a15b3c93770415cae483735f0b534a6 = L.marker(
+                [26.820553000000004, 30.802497999999996],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_035af069be064b34a8ac7a09bfa2cbf9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3654176fa3a24bf1b78c918c0cc750ee = $(`<div id="html_3654176fa3a24bf1b78c918c0cc750ee" style="width: 100.0%; height: 100.0%;"><i>Egypt</i><br><br>Most highly correlated crop: alfalfa<br><br>p-value: 8.77e-61</div>`)[0];
+            popup_035af069be064b34a8ac7a09bfa2cbf9.setContent(html_3654176fa3a24bf1b78c918c0cc750ee);
+        
+
+        marker_5a15b3c93770415cae483735f0b534a6.bindPopup(popup_035af069be064b34a8ac7a09bfa2cbf9)
+        ;
+
+        
+    
+    
+            marker_5a15b3c93770415cae483735f0b534a6.bindTooltip(
+                `<div>
+                     Egypt
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3e202d69c5df46b69a2cbbabef4fca0a = L.marker(
+                [15.179383999999999, 39.782334000000006],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_3446b3cb8bc74e4997dd079982dbaa96 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fee35d6fa32f432ab1b672602302afbe = $(`<div id="html_fee35d6fa32f432ab1b672602302afbe" style="width: 100.0%; height: 100.0%;"><i>Eritrea</i><br><br>Most highly correlated crop: alfalfa<br><br>p-value: 4.089999999999998e-229</div>`)[0];
+            popup_3446b3cb8bc74e4997dd079982dbaa96.setContent(html_fee35d6fa32f432ab1b672602302afbe);
+        
+
+        marker_3e202d69c5df46b69a2cbbabef4fca0a.bindPopup(popup_3446b3cb8bc74e4997dd079982dbaa96)
+        ;
+
+        
+    
+    
+            marker_3e202d69c5df46b69a2cbbabef4fca0a.bindTooltip(
+                `<div>
+                     Eritrea
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8dff02212dd449b583afa0cce4369a54 = L.marker(
+                [9.145, 40.489672999999996],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_0f7d43ca58b84cb48771fc68dffb103b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1f584867526c425cb5c6b55ed6feac81 = $(`<div id="html_1f584867526c425cb5c6b55ed6feac81" style="width: 100.0%; height: 100.0%;"><i>Ethiopia</i><br><br>Most highly correlated crop: potato<br><br>p-value: 7.039999999999997e-212</div>`)[0];
+            popup_0f7d43ca58b84cb48771fc68dffb103b.setContent(html_1f584867526c425cb5c6b55ed6feac81);
+        
+
+        marker_8dff02212dd449b583afa0cce4369a54.bindPopup(popup_0f7d43ca58b84cb48771fc68dffb103b)
+        ;
+
+        
+    
+    
+            marker_8dff02212dd449b583afa0cce4369a54.bindTooltip(
+                `<div>
+                     Ethiopia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b75e744a07c8410e9154991c94761ea5 = L.marker(
+                [7.946527000000001, -1.0231940000000002],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_ccacc0dc1e4d430bbb079d5a9efe221f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dea0e5a8603a4f3ea516d17581462dca = $(`<div id="html_dea0e5a8603a4f3ea516d17581462dca" style="width: 100.0%; height: 100.0%;"><i>Ghana</i><br><br>Most highly correlated crop: carrot<br><br>p-value: 2.309999999999999e-227</div>`)[0];
+            popup_ccacc0dc1e4d430bbb079d5a9efe221f.setContent(html_dea0e5a8603a4f3ea516d17581462dca);
+        
+
+        marker_b75e744a07c8410e9154991c94761ea5.bindPopup(popup_ccacc0dc1e4d430bbb079d5a9efe221f)
+        ;
+
+        
+    
+    
+            marker_b75e744a07c8410e9154991c94761ea5.bindTooltip(
+                `<div>
+                     Ghana
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3eec4a5cd8fc47298d8af22720b39c5d = L.marker(
+                [9.945587, -9.696645],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_fd4c9fb66a1e40d0a7fc79e4f7a3fc8e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8d02f9250d5442349fa70b71cbe5ce0f = $(`<div id="html_8d02f9250d5442349fa70b71cbe5ce0f" style="width: 100.0%; height: 100.0%;"><i>Guinea</i><br><br>Most highly correlated crop: maizefor<br><br>p-value: 4.519999999999998e-289</div>`)[0];
+            popup_fd4c9fb66a1e40d0a7fc79e4f7a3fc8e.setContent(html_8d02f9250d5442349fa70b71cbe5ce0f);
+        
+
+        marker_3eec4a5cd8fc47298d8af22720b39c5d.bindPopup(popup_fd4c9fb66a1e40d0a7fc79e4f7a3fc8e)
+        ;
+
+        
+    
+    
+            marker_3eec4a5cd8fc47298d8af22720b39c5d.bindTooltip(
+                `<div>
+                     Guinea
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_67ac2501b3694ddca7dd43ae7bd7de50 = L.marker(
+                [11.803749, -15.180413],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_c77fe2b714f14cf6b220ac7aaff55d9a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b76d287d2d18404f8123fe83067794f3 = $(`<div id="html_b76d287d2d18404f8123fe83067794f3" style="width: 100.0%; height: 100.0%;"><i>Guinea-Bissau</i><br><br>Most highly correlated crop: alfalfa<br><br>p-value: 5.920000000000001e-05</div>`)[0];
+            popup_c77fe2b714f14cf6b220ac7aaff55d9a.setContent(html_b76d287d2d18404f8123fe83067794f3);
+        
+
+        marker_67ac2501b3694ddca7dd43ae7bd7de50.bindPopup(popup_c77fe2b714f14cf6b220ac7aaff55d9a)
+        ;
+
+        
+    
+    
+            marker_67ac2501b3694ddca7dd43ae7bd7de50.bindTooltip(
+                `<div>
+                     Guinea-Bissau
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_69e1a31f1da743cbac70977ac3dfe785 = L.marker(
+                [-0.023559, 37.906193],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_319afba36e174849a157511cfd83f561 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dedbe68b4b1d4521a03b425d8ef76a0d = $(`<div id="html_dedbe68b4b1d4521a03b425d8ef76a0d" style="width: 100.0%; height: 100.0%;"><i>Kenya</i><br><br>Most highly correlated crop: barley<br><br>p-value: 1.9899999999999998e-107</div>`)[0];
+            popup_319afba36e174849a157511cfd83f561.setContent(html_dedbe68b4b1d4521a03b425d8ef76a0d);
+        
+
+        marker_69e1a31f1da743cbac70977ac3dfe785.bindPopup(popup_319afba36e174849a157511cfd83f561)
+        ;
+
+        
+    
+    
+            marker_69e1a31f1da743cbac70977ac3dfe785.bindTooltip(
+                `<div>
+                     Kenya
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8504fcd3bd514e928d04dfb0154ccf14 = L.marker(
+                [6.4280550000000005, -9.429499],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_dd5faa3dbe25402f8b776677529512d3 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5439fbf92685427e88428664bca666fb = $(`<div id="html_5439fbf92685427e88428664bca666fb" style="width: 100.0%; height: 100.0%;"><i>Liberia</i><br><br>Most highly correlated crop: wheat<br><br>p-value: 5.979999999999996e-299</div>`)[0];
+            popup_dd5faa3dbe25402f8b776677529512d3.setContent(html_5439fbf92685427e88428664bca666fb);
+        
+
+        marker_8504fcd3bd514e928d04dfb0154ccf14.bindPopup(popup_dd5faa3dbe25402f8b776677529512d3)
+        ;
+
+        
+    
+    
+            marker_8504fcd3bd514e928d04dfb0154ccf14.bindTooltip(
+                `<div>
+                     Liberia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_373948e8351540acb0acaf3d22493319 = L.marker(
+                [-18.766947000000002, 46.869107],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_17fec99d935b4a07a35847a98f854093 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c39ffe40fded4a45844ac7d4467d5c3f = $(`<div id="html_c39ffe40fded4a45844ac7d4467d5c3f" style="width: 100.0%; height: 100.0%;"><i>Madagascar</i><br><br>Most highly correlated crop: onion<br><br>p-value: 9.999999999999997e-203</div>`)[0];
+            popup_17fec99d935b4a07a35847a98f854093.setContent(html_c39ffe40fded4a45844ac7d4467d5c3f);
+        
+
+        marker_373948e8351540acb0acaf3d22493319.bindPopup(popup_17fec99d935b4a07a35847a98f854093)
+        ;
+
+        
+    
+    
+            marker_373948e8351540acb0acaf3d22493319.bindTooltip(
+                `<div>
+                     Madagascar
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bc149fb663bc4b3ab6e2ccbf6c9171ec = L.marker(
+                [-13.254307999999998, 34.301525],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_f4357eafa7e14141b8fb24c5aa800f5b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7503f04f0a104404b59c71b81264a645 = $(`<div id="html_7503f04f0a104404b59c71b81264a645" style="width: 100.0%; height: 100.0%;"><i>Malawi</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 3.45e-83</div>`)[0];
+            popup_f4357eafa7e14141b8fb24c5aa800f5b.setContent(html_7503f04f0a104404b59c71b81264a645);
+        
+
+        marker_bc149fb663bc4b3ab6e2ccbf6c9171ec.bindPopup(popup_f4357eafa7e14141b8fb24c5aa800f5b)
+        ;
+
+        
+    
+    
+            marker_bc149fb663bc4b3ab6e2ccbf6c9171ec.bindTooltip(
+                `<div>
+                     Malawi
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e57162acef7b483ea6fe725fed0d4874 = L.marker(
+                [17.570692, -3.9961660000000006],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_432287ba2f5e49e7a48e6e355b1e6033 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_afb39f6299d94bbfa4f8298608c9f477 = $(`<div id="html_afb39f6299d94bbfa4f8298608c9f477" style="width: 100.0%; height: 100.0%;"><i>Mali</i><br><br>Most highly correlated crop: oats<br><br>p-value: 6.959999999999998e-119</div>`)[0];
+            popup_432287ba2f5e49e7a48e6e355b1e6033.setContent(html_afb39f6299d94bbfa4f8298608c9f477);
+        
+
+        marker_e57162acef7b483ea6fe725fed0d4874.bindPopup(popup_432287ba2f5e49e7a48e6e355b1e6033)
+        ;
+
+        
+    
+    
+            marker_e57162acef7b483ea6fe725fed0d4874.bindTooltip(
+                `<div>
+                     Mali
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d48d7bde73c04cfba274037ab3bf5694 = L.marker(
+                [21.00789, -10.940835],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_782966a37f81445f80a77372ddfc52a2 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_cb0eb19fc1ce4bbabc3bf5d736458deb = $(`<div id="html_cb0eb19fc1ce4bbabc3bf5d736458deb" style="width: 100.0%; height: 100.0%;"><i>Mauritania</i><br><br>Most highly correlated crop: alfalfa<br><br>p-value: 1.1599999999999992e-214</div>`)[0];
+            popup_782966a37f81445f80a77372ddfc52a2.setContent(html_cb0eb19fc1ce4bbabc3bf5d736458deb);
+        
+
+        marker_d48d7bde73c04cfba274037ab3bf5694.bindPopup(popup_782966a37f81445f80a77372ddfc52a2)
+        ;
+
+        
+    
+    
+            marker_d48d7bde73c04cfba274037ab3bf5694.bindTooltip(
+                `<div>
+                     Mauritania
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_481743b5d5714e659a51ab90a7f3ce1a = L.marker(
+                [31.791702, -7.09262],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_c97a8543b93444818e73861728ea3e96 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bf81641cea77452497fe3231cbd69836 = $(`<div id="html_bf81641cea77452497fe3231cbd69836" style="width: 100.0%; height: 100.0%;"><i>Morocco</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 1.5999999999999998e-78</div>`)[0];
+            popup_c97a8543b93444818e73861728ea3e96.setContent(html_bf81641cea77452497fe3231cbd69836);
+        
+
+        marker_481743b5d5714e659a51ab90a7f3ce1a.bindPopup(popup_c97a8543b93444818e73861728ea3e96)
+        ;
+
+        
+    
+    
+            marker_481743b5d5714e659a51ab90a7f3ce1a.bindTooltip(
+                `<div>
+                     Morocco
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c2eef05bb0e246dfa2bbdca6bf3078b8 = L.marker(
+                [-18.665695, 35.529562],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_a7753a717dd548dea52f1379c5911e26 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9b1e648a7e3c4a4cbb28e69914111d2f = $(`<div id="html_9b1e648a7e3c4a4cbb28e69914111d2f" style="width: 100.0%; height: 100.0%;"><i>Mozambique</i><br><br>Most highly correlated crop: maize<br><br>p-value: 1.6699999999999998e-118</div>`)[0];
+            popup_a7753a717dd548dea52f1379c5911e26.setContent(html_9b1e648a7e3c4a4cbb28e69914111d2f);
+        
+
+        marker_c2eef05bb0e246dfa2bbdca6bf3078b8.bindPopup(popup_a7753a717dd548dea52f1379c5911e26)
+        ;
+
+        
+    
+    
+            marker_c2eef05bb0e246dfa2bbdca6bf3078b8.bindTooltip(
+                `<div>
+                     Mozambique
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8ab6eee3a74e4c22b078f39b6199f76a = L.marker(
+                [-22.957639999999998, 18.49041],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_d9a1bc4b3a8640f382b75d4b55353650 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_514fddc92ba246aeab891c5ddd8ca8e8 = $(`<div id="html_514fddc92ba246aeab891c5ddd8ca8e8" style="width: 100.0%; height: 100.0%;"><i>Namibia</i><br><br>Most highly correlated crop: maize<br><br>p-value: 6.939999999999996e-294</div>`)[0];
+            popup_d9a1bc4b3a8640f382b75d4b55353650.setContent(html_514fddc92ba246aeab891c5ddd8ca8e8);
+        
+
+        marker_8ab6eee3a74e4c22b078f39b6199f76a.bindPopup(popup_d9a1bc4b3a8640f382b75d4b55353650)
+        ;
+
+        
+    
+    
+            marker_8ab6eee3a74e4c22b078f39b6199f76a.bindTooltip(
+                `<div>
+                     Namibia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_090511adbed24d7481a4b7aac330e463 = L.marker(
+                [17.607789, 8.081666],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_57edcdcb78ec4acd9f4d3929a6db114a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4349758ecfde4ec0b09cb2e2d2ab02c1 = $(`<div id="html_4349758ecfde4ec0b09cb2e2d2ab02c1" style="width: 100.0%; height: 100.0%;"><i>Niger</i><br><br>Most highly correlated crop: barley<br><br>p-value: 1.3999999999999997e-138</div>`)[0];
+            popup_57edcdcb78ec4acd9f4d3929a6db114a.setContent(html_4349758ecfde4ec0b09cb2e2d2ab02c1);
+        
+
+        marker_090511adbed24d7481a4b7aac330e463.bindPopup(popup_57edcdcb78ec4acd9f4d3929a6db114a)
+        ;
+
+        
+    
+    
+            marker_090511adbed24d7481a4b7aac330e463.bindTooltip(
+                `<div>
+                     Niger
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ff12678cb59d40049acae575a35a6d71 = L.marker(
+                [9.081999, 8.675277000000001],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_d2d4078eba5549b282ea9454fd10b357 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_257984eabf984439863c633044ab09c4 = $(`<div id="html_257984eabf984439863c633044ab09c4" style="width: 100.0%; height: 100.0%;"><i>Nigeria</i><br><br>Most highly correlated crop: carrot<br><br>p-value: 4.1399999999999975e-225</div>`)[0];
+            popup_d2d4078eba5549b282ea9454fd10b357.setContent(html_257984eabf984439863c633044ab09c4);
+        
+
+        marker_ff12678cb59d40049acae575a35a6d71.bindPopup(popup_d2d4078eba5549b282ea9454fd10b357)
+        ;
+
+        
+    
+    
+            marker_ff12678cb59d40049acae575a35a6d71.bindTooltip(
+                `<div>
+                     Nigeria
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_98545bf9efbc4d7aabacf82451244dc2 = L.marker(
+                [14.497401000000002, -14.452361999999999],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_572cfdd1666148008224c99e18655804 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_03bff0e9d707474b9947f2aea34986b7 = $(`<div id="html_03bff0e9d707474b9947f2aea34986b7" style="width: 100.0%; height: 100.0%;"><i>Senegal</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 6.48e-30</div>`)[0];
+            popup_572cfdd1666148008224c99e18655804.setContent(html_03bff0e9d707474b9947f2aea34986b7);
+        
+
+        marker_98545bf9efbc4d7aabacf82451244dc2.bindPopup(popup_572cfdd1666148008224c99e18655804)
+        ;
+
+        
+    
+    
+            marker_98545bf9efbc4d7aabacf82451244dc2.bindTooltip(
+                `<div>
+                     Senegal
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_58ad4eda18b34cc4872c5fbe71784002 = L.marker(
+                [8.460555000000001, -11.779889],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_58cda12be43a4642a14fd299b2c7cac9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a8c9cd00db9449e7aff78afa059c56b0 = $(`<div id="html_a8c9cd00db9449e7aff78afa059c56b0" style="width: 100.0%; height: 100.0%;"><i>Sierra Leone</i><br><br>Most highly correlated crop: maizefor<br><br>p-value: 2.0699999999999997e-43</div>`)[0];
+            popup_58cda12be43a4642a14fd299b2c7cac9.setContent(html_a8c9cd00db9449e7aff78afa059c56b0);
+        
+
+        marker_58ad4eda18b34cc4872c5fbe71784002.bindPopup(popup_58cda12be43a4642a14fd299b2c7cac9)
+        ;
+
+        
+    
+    
+            marker_58ad4eda18b34cc4872c5fbe71784002.bindTooltip(
+                `<div>
+                     Sierra Leone
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9ef5e858258e494fafcf4d2eda3993e9 = L.marker(
+                [12.862807, 30.217636],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_96b4774950c540409976de2139a40671 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_eff94e0fae9642e19d74b9cd53279c60 = $(`<div id="html_eff94e0fae9642e19d74b9cd53279c60" style="width: 100.0%; height: 100.0%;"><i>Sudan</i><br><br>Most highly correlated crop: potato<br><br>p-value: 4.5643716272979e-310</div>`)[0];
+            popup_96b4774950c540409976de2139a40671.setContent(html_eff94e0fae9642e19d74b9cd53279c60);
+        
+
+        marker_9ef5e858258e494fafcf4d2eda3993e9.bindPopup(popup_96b4774950c540409976de2139a40671)
+        ;
+
+        
+    
+    
+            marker_9ef5e858258e494fafcf4d2eda3993e9.bindTooltip(
+                `<div>
+                     Sudan
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2ba40c6a5ce848fa8cc6fd58609fba5e = L.marker(
+                [-6.369028, 34.888822],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_9a514c0d3f344e46ab76c5f590648f4f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_98c7082a922543f0b7b5c70df947c09c = $(`<div id="html_98c7082a922543f0b7b5c70df947c09c" style="width: 100.0%; height: 100.0%;"><i>Tanzania</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 5.889999999999997e-288</div>`)[0];
+            popup_9a514c0d3f344e46ab76c5f590648f4f.setContent(html_98c7082a922543f0b7b5c70df947c09c);
+        
+
+        marker_2ba40c6a5ce848fa8cc6fd58609fba5e.bindPopup(popup_9a514c0d3f344e46ab76c5f590648f4f)
+        ;
+
+        
+    
+    
+            marker_2ba40c6a5ce848fa8cc6fd58609fba5e.bindTooltip(
+                `<div>
+                     Tanzania
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7f07235210d54960bdd13e3e159f495d = L.marker(
+                [1.373333, 32.290275],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_9d2ec1a3df95472f88166ca2ea88ed4a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fbb4bb0c8d4743aa87a061f9c91b857a = $(`<div id="html_fbb4bb0c8d4743aa87a061f9c91b857a" style="width: 100.0%; height: 100.0%;"><i>Uganda</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 7.059999999999997e-208</div>`)[0];
+            popup_9d2ec1a3df95472f88166ca2ea88ed4a.setContent(html_fbb4bb0c8d4743aa87a061f9c91b857a);
+        
+
+        marker_7f07235210d54960bdd13e3e159f495d.bindPopup(popup_9d2ec1a3df95472f88166ca2ea88ed4a)
+        ;
+
+        
+    
+    
+            marker_7f07235210d54960bdd13e3e159f495d.bindTooltip(
+                `<div>
+                     Uganda
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6341e190f3f64e6f950083c77abec5c4 = L.marker(
+                [-13.133897, 27.849332],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_3cced73f3e6b49d2911f9e7b3dae1f28 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d932e061e51b421eb1c0716f799a2f35 = $(`<div id="html_d932e061e51b421eb1c0716f799a2f35" style="width: 100.0%; height: 100.0%;"><i>Zambia</i><br><br>Most highly correlated crop: mixedgrass<br><br>p-value: 1e-323</div>`)[0];
+            popup_3cced73f3e6b49d2911f9e7b3dae1f28.setContent(html_d932e061e51b421eb1c0716f799a2f35);
+        
+
+        marker_6341e190f3f64e6f950083c77abec5c4.bindPopup(popup_3cced73f3e6b49d2911f9e7b3dae1f28)
+        ;
+
+        
+    
+    
+            marker_6341e190f3f64e6f950083c77abec5c4.bindTooltip(
+                `<div>
+                     Zambia
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8d8bc625cf8643d2b59f1ec349aabb90 = L.marker(
+                [-19.015438, 29.154857],
+                {}
+            ).addTo(map_0f077a5e245b44de9fcdee330eca01d3);
+        
+    
+        var popup_32fdeeeccc184c69a8bb9cddc0bde666 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_263de534b67f49129e32d9014a5e6b53 = $(`<div id="html_263de534b67f49129e32d9014a5e6b53" style="width: 100.0%; height: 100.0%;"><i>Zimbabwe</i><br><br>Most highly correlated crop: alfalfa<br><br>p-value: 1.8600000000000001e-16</div>`)[0];
+            popup_32fdeeeccc184c69a8bb9cddc0bde666.setContent(html_263de534b67f49129e32d9014a5e6b53);
+        
+
+        marker_8d8bc625cf8643d2b59f1ec349aabb90.bindPopup(popup_32fdeeeccc184c69a8bb9cddc0bde666)
+        ;
+
+        
+    
+    
+            marker_8d8bc625cf8643d2b59f1ec349aabb90.bindTooltip(
+                `<div>
+                     Zimbabwe
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
