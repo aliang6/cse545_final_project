@@ -126,7 +126,10 @@ def mlinreg(data):
     t_stat = []
     p = []
     for i in range(1, np.size(indeps1, 0)):
-        se.append(np.sqrt(sSquared/np.sum([((elem - mean_indeps1[i]) ** 2) for elem in indeps1[i]])))
+        if np.sum(indeps1[i]) != 0:
+            se.append(np.sqrt(sSquared/np.sum([((elem - mean_indeps1[i]) ** 2) for elem in indeps1[i]])))
+        else:
+            se.append(np.finfo(float).eps)
 
     beta_flat = np.asarray([elem for elem in beta[0]])
     se = np.asarray(se)
