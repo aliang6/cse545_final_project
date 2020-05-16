@@ -1,8 +1,8 @@
 import folium
 import pandas as pd
 
-df = pd.read_csv('C://Users/dorot/Desktop/african_countries.csv')
-data = pd.read_csv('C://Users/dorot/Desktop/example_data.csv')
+df = pd.read_csv('african_countries.csv')
+data = pd.read_csv('example_data.csv')
 
 coordinates = (8.7832, 34.5085) # starting position of map: African continent
 map = folium.Map(location=coordinates, zoom_start=3)
