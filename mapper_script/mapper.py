@@ -15,7 +15,7 @@ from scipy import stats
 # In[2]:
 
 
-with open('sample_data.txt', encoding='utf-8', errors='ignore') as json_data:
+'''with open('sample_data.txt', encoding='utf-8', errors='ignore') as json_data:
     data = json.load(json_data, strict=False)
 outfile = open('final_data.json', 'w')
 for k, v in data.items():
@@ -23,7 +23,7 @@ for k, v in data.items():
     json_object = json.dumps(final_data)
     outfile.write(json_object)
     outfile.write("\n")
-outfile.close()
+outfile.close()'''
 
 
 # In[3]:
@@ -160,20 +160,17 @@ def mlinreg(data):
     min_p = np.min(np.ma.masked_where(p==0, p))
     if min_p < 0.05/(n-1):
         index = np.where(p == min_p)[0][0]
-        return (CROPS[index], beta[index+1], min_p)
+        return (CROPS[index], min_p)
     else:
-        return ('no significant crop or not enough data', 0)
+        return ('no significant crop or not enough data', 0, 0)
 
 
 rdd = rdd.mapValues(mlinreg)
-# rdd = rdd.map(list_to_csv_str)
-# rdd.saveAsTextFile('output.csv')  # could be your local directory
 data = rdd.collect()
 with open('sample_results.csv', 'w+') as file:
     writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for row in data:
         country = row[0]
         sig_crop = row[1][0]
-        betavalue = row[1][1]
-        p_val = row[1][2]
-        writer.writerow([country, sig_crop, betavalue, p_val])
+        p_val = row[1][1]
+        writer.writerow([country, sig_crop, p_val])
