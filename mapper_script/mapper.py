@@ -120,7 +120,7 @@ def mlinreg(data):
     df = np.size(myarray, 0) - n
 
     # calculate std error of beta
-    rss = np.sum((std_indeps - tf.matmul(beta, std_deps))**2)
+    rss = tf.reduce_sum(tf.square(std_indeps - tf.matmul(beta, std_deps)))
     sSquared = rss / df
     se = []
     t_stat = []
