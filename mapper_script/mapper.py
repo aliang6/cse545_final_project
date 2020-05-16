@@ -10,9 +10,10 @@ from scipy import stats
 import sys
 import json
 import re
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
+tf.disable_v2_behavior()
 
 # In[2]:
 
@@ -82,13 +83,13 @@ def mlinreg(data):
 
     # mean and std dev of deps and indeps
     mean_deps = np.mean(deps, axis = 1)
-    mean_indeps = np.mean(indeps, axis = 1)
+    mean_indeps = np.mean(indeps)
     sd_deps = np.std(deps, axis = 1)
-    sd_indeps = np.std(indeps, axis = 1)
+    sd_indeps = np.std(indeps)
 
     # standardize deps and indeps
     temp_list = []
-    for i in range(deps.size):
+    for i in range(1032):
         temp_list.append([(elem - mean_deps[i])/sd_deps[i] for elem in deps[i]])
     std_deps = np.array(temp_list)
 
@@ -97,21 +98,21 @@ def mlinreg(data):
         temp_list.append((indeps[i] - mean_indeps)/sd_indeps)
     std_indeps = np.array(temp_list)
 
-    # initialize beta and bias(b)
-    beta = tf.get_variable("beta", shape=(1, n))
-    b = tf.get_variable("b", shape=())
-
-    X = tf.placeholder(tf.float32, shape=(n, None))
+    X = tf.placeholder(tf.float32, shape=(1032, None))
     Y = tf.placeholder(tf.float32, shape=(1, None))
+
+    # initialize beta and bias(b)
+    beta = tf.Variable(tf.zeros([1, 1032]))
+    b = tf.Variable(tf.zeros([1, 1]))
 
     # calculate predicted value
     Y_pred = tf.matmul(beta, X) + b
 
     # loss function
-    l = tf.reduce_sum((Y_pred - Y)**2)
+    loss = tf.reduce_sum((Y_pred - Y)**2)
 
     # initialize optimizer
-    opt = tf.train.AdamOptimizer(learning_rate=0.1).minimize(l)
+    opt = tf.train.AdamOptimizer(learning_rate=0.1).minimize(loss)
 
     # Create a tf session
     session = tf.Session()
@@ -119,7 +120,7 @@ def mlinreg(data):
 
     # optimization loop
     for i in range(20):
-        _, c_l, c_beta, c_b = session.run([opt, l, beta, b], feed_dict={
+        _, c_l, c_beta, c_b = session.run([opt, loss, beta, b], feed_dict={
             X: std_deps,
             Y: std_indeps
     })
@@ -127,7 +128,7 @@ def mlinreg(data):
 
     # T-test
     # degree of freedom
-    df = myarray.size - (n + 1)
+    df = myarray.size - (1032 + 1)
 
     # calculate std error of beta
     rss = np.sum((std_indeps - tf.matmul(beta, std_deps))**2)
@@ -135,22 +136,20 @@ def mlinreg(data):
     se = []
     t_stat = []
     p = []
-    for i in range(n):
+    for i in range(1032):
         se.append(np.sqrt(sSquared/np.sum([((elem - mean_deps[i]) ** 2) for elem in deps[i]])))
 
     # t statistic
-    for i in range(n):
+    for i in range(1032):
         t_stat.append((c_beta[i]/se[i]))
 
     # p value
-    for i in range(n):
+    for i in range(1032):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
     # obtain the index of the smallest p value in p
-    ind = np.argpartition(p, 1)
-
-    if p < 0.05/1032:
-        return ind[:1]
+    if min(p) < 0.05/1032:
+        return p.index(min(p))
     else:
         return ['no significant crop']
 
