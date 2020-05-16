@@ -72,15 +72,15 @@ def f_batch_tensorflow(beta, A, B):
 def mlinreg(data):
     # convert list of np arrays into a single array
     myarray = np.vstack(data)
-    print('size of input matrix: ' + str(myarray.size))
+    print('size of input matrix: ' + str(np.size(myarray, 0)))
 
-    # the number of dependent variables
-    n = 1032
+    # the total number of dependent variables and independent variables
+    n = np.size(myarray, 1)
 
     # dependent variables
     # pick first n columns into deps and transpose it
     # deps' dimension is n*m (m is the number of data points in each record)
-    deps = np.hstack((np.ones(myarray.size, 1), myarray[:, 0:n])).transpose()
+    deps = np.hstack((np.ones((np.size(myarray, 0), 1)), myarray[:, 0:n])).transpose()
 
     # independent variable
     # pick the last column into indeps and transpose it
@@ -95,7 +95,7 @@ def mlinreg(data):
 
     # standardize deps and indeps
     temp_list = []
-    for i in range(n):
+    for i in range(np.size(deps, 0)):
         temp_list.append([(elem - mean_deps[i])/sd_deps[i] for elem in deps[i]])
     std_deps = np.array(temp_list)
 
@@ -110,14 +110,14 @@ def mlinreg(data):
     # initialize beta(first element is bias)
     beta = tf.Variable(np.random.randn(1, n+1))
 
-    f_without_any_args = functools.partial(f_batch_tensorflow, A=X, B=Y)
-    optimizer = tf.keras.optimizers.Adam()
+    f_without_any_args = functools.partial(f_batch_tensorflow, beta=beta, A=X, B=Y)
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.01)
     optimizer.minimize(f_without_any_args, beta)
     print(optimizer)
 
     # T-test
     # degree of freedom
-    df = myarray.size - (n + 1)
+    df = np.size(myarray, 0) - n
 
     # calculate std error of beta
     rss = np.sum((std_indeps - tf.matmul(beta, std_deps))**2)
@@ -125,19 +125,19 @@ def mlinreg(data):
     se = []
     t_stat = []
     p = []
-    for i in range(n):
+    for i in range(1, np.size(deps, 0)):
         se.append(np.sqrt(sSquared/np.sum([((elem - mean_deps[i]) ** 2) for elem in deps[i]])))
 
     # t statistic
-    for i in range(n):
+    for i in range(1, np.size(deps, 0)):
         t_stat.append((beta[i]/se[i]))
 
     # p value
-    for i in range(n):
+    for i in range(1, np.size(deps, 0)):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
     # obtain the index of the smallest p value in p
-    if min(p) < 0.05/n:
+    if min(p) < 0.05/(n-1):
         return p.index(min(p))
     else:
         return ['no significant crop']
