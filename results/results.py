@@ -21,13 +21,12 @@ keep = african_countries.difference(remove)
 df = comb[comb['Country'].isin(keep)] # only keep rows in set keep
 df = df.dropna() # drop rows that have missing data
 
-
 # hover over countries to see most highly correlated crop
 # with respect to country's food availability
 for i in df.index:
 	country = df['Country'][i]
 	loc = (df['Latitude'][i], df['Longitude'][i])
-	info = '<i>' + country + '</i><br><br>Most correlated crop: ' + df['Crop'][i] + '<br><br>Correlation: ' + str(df['Correlation'][i])
+	info = '<i>' + country + '</i><br><br>Most highly correlated crop: ' + df['Crop'][i] + '<br><br>p-value: ' + str(df['p-value'][i])
 	folium.Marker(location=loc, popup=info, tooltip=country).add_to(map)
 
 map.save('index.html')
