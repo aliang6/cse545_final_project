@@ -90,14 +90,14 @@ def mlinreg(data):
     mean_indeps1 = np.mean(indeps1, axis = 1)
     sd_indeps1 = np.std(indeps1, axis = 1)
 
-
-
     # standardize indeps
     temp_list = []
     for i in range(np.size(indeps1, 0)):
         # do something different with all-zero rows in a sparse matrix
-        if np.sum(indeps1[i]) != 0:
-            temp_list.append([(elem - mean_indeps1[i])/sd_indeps1[i] for elem in indeps1[i]])
+        if np.sum(indeps1[i]) != 0 and sd_indeps1[i] == 0:
+            temp_list.append([(elem - mean_indeps1[i]) / np.finfo(float).eps for elem in indeps1[i]])
+        elif np.sum(indeps1[i]) != 0 and sd_indeps1[i] != 0:
+            temp_list.append([(elem - mean_indeps1[i]) / sd_indeps1[i] for elem in indeps1[i]])
         else:
             temp_list.append(indeps1[i])
 
