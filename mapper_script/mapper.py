@@ -1,17 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import csv
 # In[1]:
 import functools
-from functools import partial
-from pyspark import SparkContext, SparkConf
-import numpy as np
-from scipy import stats
-import sys
+import io
 import json
-import re
-import tensorflow as tf
 
+import numpy as np
+import tensorflow as tf
+from pyspark import SparkContext, SparkConf
+from scipy import stats
 
 # In[2]:
 
@@ -80,12 +79,12 @@ def mlinreg(data):
     # dependent variables
     # pick first n columns into deps and transpose it
     # deps' dimension is n*m (m is the number of data points in each record)
-    deps = np.hstack((np.ones((np.size(myarray, 0), 1)), myarray[:, 0:n])).transpose()
+    deps = np.hstack((np.ones((np.size(myarray, 0), 1)), myarray[:, 0:n-1])).transpose()
 
     # independent variable
     # pick the last column into indeps and transpose it
     # indeps' dimension is 1*m
-    indeps = myarray[:, n].transpose()
+    indeps = myarray[:, n-1].transpose()
 
     # mean and std dev of deps and indeps
     mean_deps = np.mean(deps, axis = 1)
@@ -108,7 +107,7 @@ def mlinreg(data):
     Y = tf.constant(indeps)
 
     # initialize beta(first element is bias)
-    beta = tf.Variable(np.random.randn(1, n+1))
+    beta = tf.Variable(np.random.randn(1, n))
 
     f_without_any_args = functools.partial(f_batch_tensorflow, beta=beta, A=X, B=Y)
     optimizer = tf.keras.optimizers.Adam(learning_rate=0.01)
@@ -128,12 +127,13 @@ def mlinreg(data):
     for i in range(1, np.size(deps, 0)):
         se.append(np.sqrt(sSquared/np.sum([((elem - mean_deps[i]) ** 2) for elem in deps[i]])))
 
+    beta_flat = np.asarray([elem for elem in beta[0]])
+    se = np.asarray(se)
     # t statistic
-    for i in range(1, np.size(deps, 0)):
-        t_stat.append((beta[i]/se[i]))
+    t_stat = tf.divide(beta_flat[1:n], se)
 
     # p value
-    for i in range(1, np.size(deps, 0)):
+    for i in range(0, np.size(deps, 0)-1):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
     # obtain the index of the smallest p value in p
@@ -143,6 +143,12 @@ def mlinreg(data):
         return ['no significant crop']
 
 
+def list_to_csv_str(row):
+    output = io.StringIO('')
+    csv.writer(output).writerow(row)
+    return output.getvalue().strip()
 
-rdd.mapValues(mlinreg)
 
+rdd = rdd.map(lambda key, value: (key, mlinreg(value)))
+rdd = rdd.map(list_to_csv_str)
+rdd.saveAsTextFile('output.csv')  # could be your local directory
