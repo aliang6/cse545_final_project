@@ -1,11 +1,15 @@
 # cse545_final_project
 Final Project Repository for CSE 545 Big Data Analytics
+Team Undecided: Andy Liang, Dorothy Shek, Ling Xu, Saketh Chintapalli
 
 The preprocessing scripts can be found in the preprocessing_scripts folder.
 
-The pyspark and tensorflow scripts can be found in the mapper_script folder.
+The pyspark and tensorflow framework can be found in the mapper_script folder.
+Multiple linear regression and multiple hypotheses testing code can also be in this folder.
 
 The display code can be found in the results folder.
+
+Code was run on Google Cloud DataProc instances with image version 1.4.26-debian9.
 
 Data was retrieved from the following sources:
 
