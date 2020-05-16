@@ -79,32 +79,33 @@ def mlinreg(data):
     # dependent variables
     # pick first n columns into deps and transpose it
     # deps' dimension is n*m (m is the number of data points in each record)
-    deps = np.hstack((np.ones((np.size(myarray, 0), 1)), myarray[:, 0:n-1])).transpose()
+    indeps1 = np.hstack((np.ones((np.size(myarray, 0), 1)), myarray[:, 0:n-1])).transpose()
 
     # independent variable
     # pick the last column into indeps and transpose it
     # indeps' dimension is 1*m
-    indeps = myarray[:, n-1].transpose()
+    deps1 = myarray[:, n-1].transpose()
 
     # mean and std dev of deps and indeps
-    mean_deps = np.mean(deps, axis = 1)
-    mean_indeps = np.mean(indeps)
-    sd_deps = np.std(deps, axis = 1)
-    sd_indeps = np.std(indeps)
+    mean_indeps1 = np.mean(indeps1, axis = 1)
+    sd_indeps1 = np.std(indeps1, axis = 1)
 
-    # standardize deps and indeps
+
+
+    # standardize indeps
     temp_list = []
-    for i in range(np.size(deps, 0)):
-        temp_list.append([(elem - mean_deps[i])/sd_deps[i] for elem in deps[i]])
-    std_deps = np.array(temp_list)
+    for i in range(np.size(indeps1, 0)):
+        # do something different with all-zero rows in a sparse matrix
+        if np.sum(indeps1[i]) != 0:
+            temp_list.append([(elem - mean_indeps1[i])/sd_indeps1[i] for elem in indeps1[i]])
+        else:
+            temp_list.append(indeps1[i])
 
-    temp_list = []
-    for i in range(indeps.size):
-        temp_list.append((indeps[i] - mean_indeps)/sd_indeps)
-    std_indeps = np.array(temp_list)
+    std_indeps1 = np.asarray(temp_list)
+    std_deps1 = np.asarray(deps1)
 
-    X = tf.constant(deps)
-    Y = tf.constant(indeps)
+    X = tf.constant(indeps1)
+    Y = tf.constant(deps1)
 
     # initialize beta(first element is bias)
     beta = tf.Variable(np.random.randn(1, n))
@@ -119,13 +120,13 @@ def mlinreg(data):
     df = np.size(myarray, 0) - n
 
     # calculate std error of beta
-    rss = tf.reduce_sum(tf.square(std_indeps - tf.matmul(beta, std_deps)))
+    rss = tf.reduce_sum(tf.square(std_deps1 - tf.matmul(beta, std_indeps1)))
     sSquared = rss / df
     se = []
     t_stat = []
     p = []
-    for i in range(1, np.size(deps, 0)):
-        se.append(np.sqrt(sSquared/np.sum([((elem - mean_deps[i]) ** 2) for elem in deps[i]])))
+    for i in range(1, np.size(indeps1, 0)):
+        se.append(np.sqrt(sSquared/np.sum([((elem - mean_indeps1[i]) ** 2) for elem in indeps1[i]])))
 
     beta_flat = np.asarray([elem for elem in beta[0]])
     se = np.asarray(se)
@@ -133,14 +134,14 @@ def mlinreg(data):
     t_stat = tf.divide(beta_flat[1:n], se)
 
     # p value
-    for i in range(0, np.size(deps, 0)-1):
+    for i in range(0, np.size(indeps1, 0)-1):
         p.append(stats.t.sf(np.abs(t_stat[i]), df))
 
     # obtain the index of the smallest p value in p
     if min(p) < 0.05/(n-1):
         return p.index(min(p))
     else:
-        return ['no significant crop']
+        return [str(df) + 'no significant crop']
 
 
 def list_to_csv_str(row):
@@ -149,6 +150,6 @@ def list_to_csv_str(row):
     return output.getvalue().strip()
 
 
-rdd = rdd.map(lambda key, value: (key, mlinreg(value)))
+rdd = rdd.mapValues(mlinreg)
 rdd = rdd.map(list_to_csv_str)
 rdd.saveAsTextFile('output.csv')  # could be your local directory
